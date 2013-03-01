@@ -1,3 +1,0 @@
-[submodule "modules/logstash"]
-	path = modules/logstash
-	url = https://github.com/ICTO/puppet-logstash.git
