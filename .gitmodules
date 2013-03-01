@@ -1,0 +1,12 @@
+[submodule "ansible-redis"]
+	path = ansible-redis
+	url = git@github.com:ICTO/ansible-redis.git
+[submodule "ansible-elasticsearch"]
+	path = ansible-elasticsearch
+	url = git@github.com:ICTO/ansible-elasticsearch.git
+[submodule "ansible-kibana"]
+	path = ansible-kibana
+	url = git@github.com:ICTO/ansible-kibana.git
+[submodule "ansible-logstash"]
+	path = ansible-logstash
+	url = git@github.com:ICTO/ansible-logstash.git

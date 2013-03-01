@@ -1,0 +1,5 @@
+---
+- include: ansible-redis/setup.yml user=vagrant
+- include: ansible-elasticsearch/setup.yml user=vagrant
+- include: ansible-logstash/setup.yml user=vagrant
+- include: ansible-kibana/setup.yml user=vagrant

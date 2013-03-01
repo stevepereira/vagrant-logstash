@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'vagrant-ansible'
+
 Vagrant::Config.run do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -11,24 +13,24 @@ Vagrant::Config.run do |config|
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://users.ugent.be/~tberton/baseboxes/Debian-7.0-b3-amd64-netboot.box"
+  config.vm.box_url = "http://users.ugent.be/~tberton/baseboxes/Debian-7.0-b4-amd64-netboot-ugent-v0.1.box"
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
 
   #VM settings
 
-  config.vm.customize ["modifyvm", :id, "--memory", 1024]
-  config.vm.customize ["modifyvm", :id, "--cpus", 1]
+  config.vm.customize ["modifyvm", :id, "--memory", 2048]
+  config.vm.customize ["modifyvm", :id, "--cpus", 2]
 
 
   # Assign this VM to a host only network IP, allowing you to access it
   # via the IP.
-  config.vm.network :hostonly, "33.33.33.101"
+  config.vm.network :hostonly, "33.33.33.105"
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
-  config.vm.forward_port 9292, 8000
+  config.vm.forward_port 9292, 8008
 
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
@@ -53,10 +55,9 @@ Vagrant::Config.run do |config|
   # #               Managed by Puppet.\n"
   # # }
   #
-  config.vm.provision :puppet do |puppet|
-    puppet.manifests_path = "manifests"
-    puppet.module_path    = "modules"
-    puppet.manifest_file  = "site.pp"
-    puppet.options        = "--verbose"
+  config.vm.provision :ansible do |ansible|
+    ansible.playbook = "logstash.yml"
+    #ansible.hosts = "vagrant"
+    ansible.inventory_file = "logstash.inventory"
    end
 end
